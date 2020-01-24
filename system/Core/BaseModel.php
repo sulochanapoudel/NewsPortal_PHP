@@ -2,6 +2,7 @@
 namespace System\Core;
 
 use System\DB\Mysql;
+use System\Exceptions\DataNotLoadedException;
 
 abstract class BaseModel
 {
@@ -17,9 +18,13 @@ abstract class BaseModel
     protected $limit;
     protected $sql;
 
-    public function __construct()
+    public function __construct($id = null)
     {
         $this->db = new Mysql;
+
+        if(!is_null($id)) {
+            $this->load($id);
+        }
     }
 
     public function getTable()
@@ -90,6 +95,7 @@ abstract class BaseModel
                 $data[] = $obj;
             }
         }
+        $this->resetVars();
         return $data;
     }
 
@@ -107,6 +113,42 @@ abstract class BaseModel
 
         if(!empty($this->limit)){
             $this->sql .=" LIMIT {$this->offset}, {$this->limit}";
+        }
+    }
+    public function first()
+    {
+        $data = $this->get();
+
+        if(!empty($data)) {
+            return $data[0];
+        }
+    }
+
+    private function resetVars() {
+        $this->select = '*';
+        $this->conditions = null;
+        $this->orderBy = null;
+        $this->offset = 0;
+        $this->limit = null;
+        $this->sql = null;
+    }
+    public function load($id)
+    {
+        $this->sql = "SELECT * FROM {$this->table} WHERE {$this->pk} = '{$id}'";
+        if($this->db->run($this->sql)){
+          $data= $this->db->fetch();
+
+          if(!empty($data)){
+            foreach($data[0] as $k =>$v) {
+                $this->{$k} = $v;
+            }
+            $this->resetVars();//reset gareko, if not reset garda SQL pani aauchha.
+          }
+          else{
+              $classname = get_class($this);
+
+              throw new DataNotLoadedException("Unable to find data for the class '{$classname}' with following conditions:'{$this->pk} = {$id}'");
+          }
         }
     }
 }
