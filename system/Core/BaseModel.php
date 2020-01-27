@@ -17,6 +17,7 @@ abstract class BaseModel
     protected $offset = 0;
     protected $limit;
     protected $sql;
+    protected $related = [];
 
     public function __construct($id = null)
     {
@@ -84,7 +85,12 @@ abstract class BaseModel
         if($this->db->run($this->sql)){
             $result = $this->db->fetch();
 
-            $classname = get_class($this);
+            if(!empty($this->related)){
+                $classname = get_class($this->related['class']);
+            }
+            else{
+                $classname = get_class($this);
+            }
 
             foreach($result as $value){
                 $obj = new $classname;
@@ -101,7 +107,21 @@ abstract class BaseModel
 
     private function buildSelectQuery()
     {
-        $this->sql = "SELECT {$this->select} FROM {$this->table}";
+       if(!empty($this->related)) {
+           $tablename = $this->related['class']->getTable();
+
+           if($this->related['relation'] == 'child'){
+               $this->where($this->related['fk'], $this->{$this->pk});
+           }
+           else{
+               $this->where($this->related['class']->getPK(),$this->{$this->related['fk']});
+           }
+       }
+       else {
+           $tablename = $this->table;
+       }
+
+        $this->sql = "SELECT {$this->select} FROM {$tablename}";
 
         if(!empty($this->conditions)){
             $this->sql .=" WHERE {$this->conditions}";
@@ -116,11 +136,11 @@ abstract class BaseModel
         }
     }
     public function first()
-    {
-        $data = $this->get();
+            {
+                $data = $this->get();
 
-        if(!empty($data)) {
-            return $data[0];
+                if(!empty($data)) {
+                    return $data[0];
         }
     }
 
@@ -151,4 +171,65 @@ abstract class BaseModel
           }
         }
     }
+
+    public function save()
+    {
+       $data = $this->getDataArray();
+
+       $set = [];
+
+       foreach($data as $k => $v) {
+           if(is_null($v) || empty($v)){
+               $set[] = "{$k} = NULL";
+           }
+           else {
+
+               $set[] = "{$k} = '{$v}'";
+           }
+       }
+            if(isset($this->{$this->pk}) && !empty($this->{$this->pk})) {
+                $this->sql = "UPDATE {$this->table} SET".implode( ",", $set)." WHERE {$this->pk} = '{$this->{$this->pk}}'";
+                $flg = 0;
+            }
+            else {
+                $this->sql = "INSERT INTO {$this->table} SET ".implode( ", ", $set);
+                $flg = 1;
+                }
+            if($this->db->run($this->sql)){
+                if($flg == 1){
+                    $this->{$this->pk} = $this->db->insert_id();
+                }
+            }
+    }
+    private function getDataArray()
+    {
+        $predefined = get_class_vars(get_class($this));
+        $all = get_object_vars($this);
+
+        return array_diff_key($all, $predefined);
+    }
+    public function delete()
+    {
+        $this->sql = "DELETE FROM {$this->table} WHERE {$this->pk} = '{$this->{$this->pk}}'";
+
+        if($this->db->run($this->sql))
+        {
+            $data = $this->getDataArray();
+            foreach($data as $k => $v) {
+                unset($this->{$k});
+            }
+            $this->resetVars();
+        }
+    }
+    public function related($classname, $fk, $relation)
+    {
+        $obj = new $classname;
+        $this->related = [
+            'class' => $obj,
+            'fk' => $fk,
+            'relation' => $relation
+        ];
+        return $this;
+    }
+
 }
