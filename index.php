@@ -2,9 +2,28 @@
 
 define("BASEDIR", __DIR__);
 require BASEDIR."/vendor/autoload.php";
-$article = new \App\Models\Article(9);
-$article->related(\App\Models\User::class, 'user_id', 'parent');
-dump($article->get());
+
+echo "Hello";
+
+
+
+
+
+
+
+
+
+
+
+//$article = new \App\Models\Article(10);
+//$user = new \App\Models\User(7);
+//$articles = $user->articles()->get();
+//dump($articles);
+
+//$users = $article->user()->first();
+//dump($users);
+
+//dump($article->get());
 
 
 
@@ -28,3 +47,4 @@ dump($article->get());
 //$user->delete();
 //dump($user);
 
+// class, function and arguments are passed.
