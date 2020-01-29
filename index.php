@@ -3,7 +3,8 @@
 define("BASEDIR", __DIR__);
 require BASEDIR."/vendor/autoload.php";
 
-echo "Hello";
+$app = new \System\Core\SystemInit;
+$app->start();
 
 
 

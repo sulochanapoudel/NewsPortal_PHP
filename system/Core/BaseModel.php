@@ -4,7 +4,7 @@ namespace System\Core;
 use System\DB\Mysql;
 use System\Exceptions\DataNotLoadedException;
 
-abstract class BaseModel
+abstract class BaseModel //aru model class le inherite garos bhanera banako
 {
 
     protected $table;
