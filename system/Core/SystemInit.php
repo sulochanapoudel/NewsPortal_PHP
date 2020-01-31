@@ -4,6 +4,7 @@
 namespace System\Core;
 
 
+use System\Exceptions\ControllerNotValidException;
 use System\Exceptions\FileNotFoundException;
 
 class SystemInit
@@ -38,7 +39,7 @@ class SystemInit
         }
         else {
             $parts = [
-                'controller' => ucfirst(config('default_controller'.'Controller')),
+                'controller' => ucfirst(config('default_controller')).'Controller',
                 'method' => 'index',
                 'argument' => null
             ];
@@ -50,6 +51,20 @@ class SystemInit
        $controller_file = BASEDIR."/app/Controllers/{$controller}.php";
         if(is_file($controller_file)){
 
+            $controller_class = "\App\Controllers\\{$controller}"; //namespace ma back slash, files ma forward slash. Backslash le symbol mai ignore garchha. so use two \\
+            $obj = new $controller_class;
+            //instanceof le check garchha, $obj ma Basecontroller  ako chha kee chhaina bhanera
+            if($obj instanceof BaseController){
+                if(is_null($argument)){
+                    $obj->{$method}();
+                }
+                else {
+                    $obj->{$method}($argument);
+                }
+            }
+            else {
+                throw new ControllerNotValidException("Class'{$controller_class}'is not valid controller as it doesnot inherit '\System\Core\BaseController' class.");
+            }
         }
         else {
             throw new FileNotFoundException("Controller file '{$controller_file}' doesnot exit.");
