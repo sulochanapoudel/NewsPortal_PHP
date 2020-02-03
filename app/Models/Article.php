@@ -9,10 +9,13 @@ use System\Core\BaseModel;
 class Article extends BaseModel
 {
     protected $table = 'articles';
-
-    public function user()
+    public function category ()
     {
-        return $this->related(User::class,'user_id','parent');
+        return $this->related(Category::class,'category_id','parent');
+    }
+    public function comments()
+    {
+        return $this->related(Comment::class, 'article_id', 'child');
     }
 
 }

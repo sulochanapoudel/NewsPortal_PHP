@@ -6,10 +6,11 @@ namespace App\Controllers;
 
 use System\Core\BaseController;
 
-class HomeController extends BaseController
+
+class DashboardController extends BaseController
 {
     public function index()
     {
-        echo "Hello";
+        view('cms/dashboard/index.php');
     }
 }
