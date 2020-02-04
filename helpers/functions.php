@@ -20,3 +20,9 @@ if(!function_exists('view')){
         \System\Core\View::make($file, $data);
     }
 }
+if(!function_exists('url'))
+{
+    function url($uri= ''){
+        return config('site_url').$uri;
+    }
+}
