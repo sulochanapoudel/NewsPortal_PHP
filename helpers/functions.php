@@ -26,3 +26,36 @@ if(!function_exists('url'))
         return config('site_url').$uri;
     }
 }
+if(!function_exists('login_check')){
+    function login_check(){
+        if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+            $user = new \App\Models\User;
+            $check = $user->select('id')->where('id', $_SESSION['user'])->first();
+
+            if(!is_null($check)){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+}
+
+if(!function_exists('redirect')) {
+    function redirect($url) {
+        header("location: {$url}");
+        die;
+    }
+}
+if(!function_exists('auth')){
+    function auth($url) {
+        if(!login_check()){
+            redirect(url('login')); // redirect gareko by calling function
+        }
+    }
+}
+

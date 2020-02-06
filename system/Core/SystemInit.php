@@ -9,6 +9,10 @@ use System\Exceptions\FileNotFoundException;
 
 class SystemInit
 {
+    public function __construct()
+    {
+        session_start();
+    }
     public function start()
     {
         $parts = $this->getUrlParts();
