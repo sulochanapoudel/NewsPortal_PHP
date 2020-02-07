@@ -1,13 +1,9 @@
+<?php if(check_message()): ?>
 <!--message start -->
 <div class="popup-messages">
-    <div class="alert alert-success alert-dismissible fade show">
-        This is a success message.
-        <button type="button" class="close" data-dismiss="alert">
-            <span>&times;</span>
-        </button>
-    </div>
-    <div class="alert alert-danger alert-dismissible fade show">
-        This is an error message.
+    <?php $message = get_message(); ?>
+    <div class="alert alert-<?php echo $message['level']; ?> alert-dismissible fade show">
+        <?php echo $message['content']; ?>
         <button type="button" class="close" data-dismiss="alert">
             <span>&times;</span>
         </button>
@@ -15,3 +11,5 @@
 </div>
 
 <!--message end -->
+<?php delete_message(); ?>
+<?php endif; ?>
