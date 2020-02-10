@@ -31,26 +31,33 @@ if(!function_exists('login_check')) {
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             $user = new \App\Models\User;
-            $check = $user->select('id')->where('id', $_COOKIE['user'])->first();
+            $check = $user->select('id')->where('id', $_SESSION['user'])->first();
 
             if (!is_null($check)) {
                 return true;
             } else {
-                if (isset($_COOKIE['user']) && !empty($_COOKIE['user'])) {
-                    $user = new \App\Models\User;
-                    $check = $user->select('id')->where('id', $_COOKIE['user'])->first();
+                return false;
+            }
+        }
+        else {
+            if (isset($_COOKIE['user']) && !empty($_COOKIE['user'])) {
+                $user = new \App\Models\User;
+                $check = $user->select('id')->where('id', $_COOKIE['user'])->first();
 
-                    if (!is_null($check)) {
-                        $_SESSION['user'] = $check->id;
-                        return true;
-                    } else {
-                        return false;
-                    }
+                if (!is_null($check)) {
+                    $_SESSION['user'] = $check->id;
+                    return true;
                 } else {
                     return false;
                 }
             }
-        }
+
+    else {
+        return false;
+    }
+    }
+
+}
     }
 
     if (!function_exists('redirect')) {
@@ -64,7 +71,7 @@ if(!function_exists('login_check')) {
         function auth($url)
         {
             if (!login_check()) {
-                redirect(url('login')); // redirect gareko by calling function
+                redirect($url); // redirect gareko by calling function
             }
         }
     }
@@ -100,4 +107,11 @@ if(!function_exists('login_check')) {
         }
     }
 
+if (!function_exists('guest')) {
+    function guest($url)
+    {
+        if (login_check()) {
+            redirect(url('login')); // if already logged in, direct dashboard ma direct lane insetead of logIn page
+        }
+    }
 }

@@ -9,6 +9,14 @@ use System\Core\BaseController;
 
 class LoginController extends BaseController
 {
+
+    public function __construct() //object is created from the class when function is called, construct function is called
+       // kunai pani class ko object banauda automatically call hunchha bhane that is called constructor
+        // end of script or object need to be destructed is called destructor, these are known as magic method
+    {
+        guest(url('dashboard'));
+    }
+
     public function index()
     {
         view('cms/login/index.php');

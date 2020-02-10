@@ -29,7 +29,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#"><i class="fas fa-user-edit mr-2"></i>Edit Profile</a>
                         <a class="dropdown-item" href="#"><i class="fas fa-asterisk mr-2"></i>Change Password</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
+                        <a class="dropdown-item" href="<?php echo url('logout'); ?>"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
                     </div>
                 </li>
             </ul>
