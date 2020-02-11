@@ -23,12 +23,12 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle mr-2"></i>
-                        Admin User
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-circle mr-2"></i> <?php echo user()->first_name; ?>
+
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#"><i class="fas fa-user-edit mr-2"></i>Edit Profile</a>
-                        <a class="dropdown-item" href="#"><i class="fas fa-asterisk mr-2"></i>Change Password</a>
+                        <a class="dropdown-item" href="<?php echo url('profile/edit'); ?>"><i class="fas fa-user-edit mr-2"></i>Edit Profile</a>
+                        <a class="dropdown-item" href="<?php echo url('profile/password'); ?>"><i class="fas fa-asterisk mr-2"></i>Change Password</a>
                         <a class="dropdown-item" href="<?php echo url('logout'); ?>"><i class="fas fa-sign-out-alt mr-2"></i>Logout</a>
                     </div>
                 </li>

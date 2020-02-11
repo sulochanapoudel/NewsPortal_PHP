@@ -115,3 +115,10 @@ if (!function_exists('guest')) {
         }
     }
 }
+
+if(!function_exists('user')) {
+    function user(){
+        return new \App\models\User($_SESSION['user']);
+    }
+
+}
