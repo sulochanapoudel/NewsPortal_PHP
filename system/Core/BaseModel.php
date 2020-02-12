@@ -188,7 +188,7 @@ abstract class BaseModel //aru model class le inherite garos bhanera banako
            }
        }
             if(isset($this->{$this->pk}) && !empty($this->{$this->pk})) {
-                $this->sql = "UPDATE {$this->table} SET".implode( ",", $set)." WHERE {$this->pk} = '{$this->{$this->pk}}'";
+                $this->sql = "UPDATE {$this->table} SET ".implode( ",", $set)." WHERE {$this->pk} = '{$this->{$this->pk}}'";
                 $flg = 0;
             }
             else {
