@@ -9,7 +9,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-users mr-2"></i>Users</a>
+                    <a class="nav-link" href="<?php echo url('users'); ?>"><i class="fas fa-users mr-2"></i>Users</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-list mr-2"></i>Categories</a>
