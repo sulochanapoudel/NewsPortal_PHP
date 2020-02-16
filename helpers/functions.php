@@ -31,7 +31,7 @@ if(!function_exists('login_check')) {
     {
         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
             $user = new \App\Models\User;
-            $check = $user->select('id')->where('id', $_SESSION['user'])->first();
+            $check = $user->select('id')->where('id', $_SESSION['user'])->where('status','Active')->first();
 
             if (!is_null($check)) {
                 return true;
@@ -42,7 +42,7 @@ if(!function_exists('login_check')) {
         else {
             if (isset($_COOKIE['user']) && !empty($_COOKIE['user'])) {
                 $user = new \App\Models\User;
-                $check = $user->select('id')->where('id', $_COOKIE['user'])->first();
+                $check = $user->select('id')->where('id', $_COOKIE['user'])->where('status', 'Active')->first();
 
                 if (!is_null($check)) {
                     $_SESSION['user'] = $check->id;
@@ -71,6 +71,9 @@ if(!function_exists('login_check')) {
         function auth($url)
         {
             if (!login_check()) {
+                unset($_SESSION['user']);
+                setcookie('user','',time()-60,'/');
+
                 redirect($url); // redirect gareko by calling function
             }
         }

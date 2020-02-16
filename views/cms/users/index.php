@@ -40,7 +40,7 @@
                                         <td><?php echo $user->updated_at; ?></td>
                                         <td>
                                             <a href="<?php echo url('users/edit/'.$user->id) ?>" class="btn btn-outline-primary btn-sm">Edit</a>
-                                            <a href="<?php echo url('users/destroy/'.$user->id) ?>" class="btn btn-outline-danger btn-sm">Delete</a>
+                                            <a href="<?php echo url('users/destroy/'.$user->id) ?>" class="btn btn-outline-danger btn-sm delete">Delete</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>

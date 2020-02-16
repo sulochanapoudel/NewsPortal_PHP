@@ -8,6 +8,11 @@ use System\Core\BaseController;
 
 class ProfileController extends BaseController
 {
+    public function __construct()
+    {
+        auth(url('login'));
+    }
+
     public function index()
     {
         // TODO: Implement index() method.

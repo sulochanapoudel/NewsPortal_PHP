@@ -31,6 +31,7 @@ class LoginController extends BaseController
 
         $check = $user->where('email', $email)
             ->where('password', $password)
+            ->where('status', 'Active')
             ->first();
 
         if(!is_null($check)) {
