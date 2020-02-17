@@ -47,6 +47,7 @@
                             </tbody>
 
                         </table>
+                        <?php view('cms/includes/pagination.php', compact('paginate')); ?>
                         <?php else: ?>
                         <div class="text-center text-muted font-italic font-weight-bold mb-3">
                             <small> No users found.</small>
@@ -61,4 +62,6 @@
 
 <?php  view('cms/includes/messages.php');
        view('cms/includes/footer.php');
+
+
        ?>

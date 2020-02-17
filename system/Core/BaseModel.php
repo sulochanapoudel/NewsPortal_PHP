@@ -232,4 +232,47 @@ abstract class BaseModel //aru model class le inherite garos bhanera banako
         return $this;
     }
 
+    public function paginate($limit = 10)
+    {
+        if(isset($_GET['page']) && !empty($_GET['page']))
+        {
+            $pageno = $_GET['page'];
+        }
+        else
+        {
+            $pageno = 1;
+        }
+        // dd($this);
+        $classname = get_class($this);
+
+        $class = new $classname;
+
+        $count = $class->select('id');
+        if(!empty($this->conditions)){
+            $count = $count->whereRaw($this->conditions);
+        }
+
+        $count = $count->get();
+        $total = count($count);
+        $pages = ceil($total / $limit); //ceil is the function for ceiling. it gives total number of pages.
+
+       if($pageno > $pages){
+           $pageno = $pages;
+       }
+
+        $offset = $limit * $pageno - $limit;
+        $this->offset = $offset;
+        $this->limit = $limit;
+
+        $data = $this->get();
+        return compact('data', 'total', 'pages', 'pageno', 'offset', 'limit');
+    }
+
+  public function whereRaw($condition)
+  {
+      $this->conditions = $condition;
+
+      return $this;
+  }
+
 }
