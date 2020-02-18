@@ -14,7 +14,7 @@
                 </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-list mr-2"></i>Categories</a>
+                    <a class="nav-link" href="<?php echo url('categories'); ?>"><i class="fas fa-list mr-2"></i>Categories</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-newspaper mr-2"></i>Articles</a>

@@ -256,6 +256,10 @@ abstract class BaseModel //aru model class le inherite garos bhanera banako
         $total = count($count);
         $pages = ceil($total / $limit); //ceil is the function for ceiling. it gives total number of pages.
 
+        if($pages <=1) {
+            $pages = 1;
+        }
+
        if($pageno > $pages){
            $pageno = $pages;
        }
