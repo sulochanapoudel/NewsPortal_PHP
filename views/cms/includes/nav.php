@@ -1,7 +1,7 @@
 <!--  NavBar -->
 <header class="row">
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary col-12">
-        <a class="navbar-brand" href="#">News Site</a>
+        <a class="navbar-brand" href="<?php echo url('dashboard'); ?>">News Site</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

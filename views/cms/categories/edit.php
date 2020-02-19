@@ -35,7 +35,7 @@
 
 
                 <div class=""form-group">
-                <button type="submit" class="btn" btn-outline-primary"><i class="fas fa-save mr2"></i> Save</button>
+                <button type="submit" class="btn" btn-outline-primary"><i class="fas fa-save mr2"></i> Update</button>
                 </div>
 
             </form>

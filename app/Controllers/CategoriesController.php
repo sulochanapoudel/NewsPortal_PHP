@@ -20,7 +20,9 @@ class CategoriesController extends BaseController
     {
         $category = new Category();
         $paginate = $category->paginate();
+
         $categories = $paginate['data'];
+
         view('cms/categories/index.php',compact('categories', 'paginate'));
 
     }
@@ -34,9 +36,7 @@ class CategoriesController extends BaseController
     {
         extract($_POST);
 
-
-
-        $category = new Category;
+        $category = new Category();
         $category->name = $name;
         $category->slug = $slug;
         $category->status = $status;
@@ -55,11 +55,9 @@ class CategoriesController extends BaseController
     }
     public function update($id)
     {
-        $category = new Category($id);
-
         extract($_POST);
 
-
+        $category = new Category($id);
 
         $category->name = $name;
         $category->slug = $slug;

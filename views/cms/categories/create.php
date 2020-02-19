@@ -14,7 +14,7 @@
                  <div class="col-6 mx-auto">
                     <form action="<?php echo url('categories/store')?>" method="post">
                     <div class=""form-group">
-                        <label for="first_name">Name</label>
+                        <label for="name">Name</label>
                          <input type="text" name="name" id="name" class="form-control" required>
                      </div>
 
