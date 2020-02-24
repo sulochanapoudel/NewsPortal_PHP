@@ -9,7 +9,7 @@
                         <h1>Articles</h1>
                     </div>
                     <div class="col-auto">
-                        <a href="<?php echo url('articles/create'); ?>" class="btn btn-outline-primary mt-2"><i class="fas fa-plus mr-2"></i>Add Articles</a>
+                        <a href="<?php echo url('articles/create'); ?>" class="btn btn-outline-primary mt-2"><i class="fas fa-plus mr-2"></i>Add Article</a>
                     </div>
                 </div>
                 <div class="row">
@@ -18,11 +18,10 @@
                         <table class="table table-striped table-hover table-sm">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
+                                    <th>Title</th>
                                     <th>Slug</th>
-                                    <th>Content</th>
                                     <th>Featured Image</th>
-                                    <th>Category ID</th>
+                                    <th>Category</th>
                                     <th>Status</th>
                                     <th>Published At</th>
                                     <th>Created At</th>
@@ -31,15 +30,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach($article as $article): ?>
+                                <?php foreach($articles as $article): ?>
                                     <tr>
-                                        <td> <?php echo $article->name; ?></td>
+                                        <td> <?php echo $article->title; ?></td>
                                         <td><?php echo $article->slug; ?></td>
-                                        <td><?php echo $article->content; ?></td>
-                                        <td><?php echo $article->featured_image; ?></td>
-                                        <td><?php echo $article->category_id; ?></td>
+                                        <td>
+                                            <?php if(!empty($article->featured_image)): ?>
+                                        <img src="<?php echo url('assets/images/'.$article->featured_image); ?>" class="small">
+                                        <?php endif; ?>
+                                        </td>
+
+                                        <td><?php echo $article->category()->first()->name; ?></td>
                                         <td><?php echo $article->status; ?></td>
-                                        <td><?php echo $article->published_at; ?></td>
+                                        <td><?php echo $article->published_at ?? ''; ?></td>
                                         <td><?php echo $article->created_at; ?></td>
                                         <td><?php echo $article->updated_at; ?></td>
                                         <td>
@@ -63,9 +66,7 @@
         </main>
 
 
-
 <?php  view('cms/includes/messages.php');
        view('cms/includes/footer.php');
-
 
        ?>

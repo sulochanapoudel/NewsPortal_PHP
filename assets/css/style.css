@@ -11,3 +11,12 @@ body {
     z-index: 1080;
 
 }
+
+img.small {
+    height: 70px;
+}
+
+img.preview {
+    max-height: 300px;
+    max-width: 300px;
+}

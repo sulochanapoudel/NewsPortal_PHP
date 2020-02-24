@@ -18,6 +18,7 @@ class Mysql
     }
     public function run($sql)
     {
+
     $this->result = $this->conn->prepare($sql);
     return $this->result->execute();
     }

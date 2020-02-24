@@ -8,6 +8,7 @@
     <title>NewsSite CMS</title>
     <link rel="stylesheet" href="<?php echo url('assets/css/bootstrap.css'); ?>">
     <link rel="stylesheet" href="<?php echo url('assets/css/all.css'); ?>">
+    <link rel="stylesheet" href="<?php echo url('assets/css/bootstrap-datetimepicker.css'); ?>">
     <link rel="stylesheet" href="<?php echo url('assets/css/style.css'); ?>">
 </head>
 <body>

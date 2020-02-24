@@ -21,4 +21,22 @@ $(function() {
         }
     });
 
+    $('#featured_image').change(function(){
+        var file = $(this)[0].files[0];
+        var reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = function(e) {
+            var image = e.currentTarget.result;
+
+            $('.img-preview').html('<img src="' + image + '"class="img-fluid preview">');
+
+        }
+    });
+
+    $('.datetime').datetimepicker({
+        format: 'yyyy-mm-dd hh:ii:ss'
+    });
+
 });
