@@ -96,7 +96,7 @@ abstract class BaseModel //aru model class le inherite garos bhanera banako
                 $obj = new $classname;
 
                 foreach($value as $k => $v){
-                    $obj->{$k} = $v;
+                    $obj->{$k} = htmlspecialchars_decode($v, ENT_QUOTES);
                 }
                 $data[] = $obj;
             }
@@ -160,7 +160,7 @@ abstract class BaseModel //aru model class le inherite garos bhanera banako
 
           if(!empty($data)){
             foreach($data[0] as $k =>$v) {
-                $this->{$k} = $v;
+                $this->{$k} = htmlspecialchars_decode($v, ENT_QUOTES);
             }
             $this->resetVars();//reset gareko, if not reset garda SQL pani aauchha.
           }
@@ -183,7 +183,7 @@ abstract class BaseModel //aru model class le inherite garos bhanera banako
                $set[] = "{$k} = NULL";
            }
            else {
-
+                $v = htmlspecialchars($v, ENT_QUOTES);
                $set[] = "{$k} = '{$v}'";
            }
        }

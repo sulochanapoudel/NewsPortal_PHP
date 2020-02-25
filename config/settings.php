@@ -4,6 +4,6 @@ $config = [
     'db_host' => 'localhost',
     'db_user' => 'root',
     'db_pass' => '',
-    'default_controller' => 'dashboard',
+    'default_controller' => 'home',
     'site_url' => 'http://localhost/Project1/'
 ];
