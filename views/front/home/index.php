@@ -1,49 +1,58 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Site</title>
-    <link rel="stylesheet" href="<?php echo url('assets/css/bootstrap.css'); ?>">
-    <link rel="stylesheet" href="<?php echo url('assets/css/all.css'); ?>">
-    <link rel="stylesheet" href="<?php echo url('assets/css/front.css'); ?>">
-</head>
 
-<body>
-    <div class="container bg-white">
-        <div class="row">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-success col-12">
-                <a class="navbar-brand" href="<?php echo url(); ?>">News Site</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        
+        <?php 
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mr-auto">
+            view('front/includes/header.php');
+            view('front/includes/nav.php');
+        ?>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                    </ul>
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
-                    </form>
+        <main class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 breaking-heading text-center my-3 font-weight-bold">
+                        This is a breaking news headline at top.
+                    </div>
+                    <div class="col-6">
+                        <img src="<?php echo url("assets/images/img_0.24055900 1582534787_1666.jpg"); ?>" class="img-fluid">
+                    </div>
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-12">
+                                <small class="text-muted font-italic">
+                                    <i class="fas-clock mr-2"></i> 31 jan 2020 04:30 PM
+                                </small>
+                            </div>
+                            <div class="col-12 text-justify">
+                                कोरोना भाइरसको संक्रमण फैलिँदै गएपछि जापानमा हुने ओलम्पिक प्रतियोगिता रोकिने सम्भावना बढ्दै गएको छ । आउँदो जुलाई २४ बाट जापानको टोकियोमा हुन लागेको ओलम्पिक २०२० रोक्नुपर्ने अन्तराष्ट्रिय ओलम्पिक समितिका सदस्य डिक पाउन्डले बताएका छन् ।
+                            </div>
+                            <div class="col-12">
+                                <a href="#" class="btn btn-outline-primary btn-sm">Read More </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </nav>
-        </div>
-        <div class="row">
-            
-        </div>
-
-    </div>
-
-
-
-<script src="<?php echo url('assets/js/jquery-3.4.1.js'); ?>"></script>
-<script src="<?php echo url('assets/js/bootstrap.js'); ?>"></script>
-<script src="<?php echo url('assets/js/front.js'); ?>"> </script>
-</body>
-</html>
+                <div class="row">
+                    <div class="col-12">
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                <?php for($i = 1; $i <= 8; $i++): ?>
+                    <div class="col-3 mb-3">
+                        <div class="row">
+                            <div class="col-12">
+                                <img src="<?php echo url("assets/images/img_0.55540700 1582531126_3177.jpg"); ?>" class="img-fluid">
+                            </div>
+                            <div class="col-12 text-center font-weight-bold my-2">
+                            <a href="#"> THis is a demo Title of an article</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        </main>
+        
+        <?php 
+        view('front/includes/footer.php');
+        ?>

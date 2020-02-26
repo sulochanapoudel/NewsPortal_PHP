@@ -1,3 +1,15 @@
 body {
     background-color: #eaeaea;
 }
+
+.breaking-heading, .footer-logo {
+    font-size: 35px;
+}
+
+.social-link {
+	font-size: 30px;
+}
+
+.social-link a:hover,  .social-link a:focus {
+	text-decoration: none;
+}
