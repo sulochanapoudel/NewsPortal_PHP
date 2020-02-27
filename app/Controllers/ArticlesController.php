@@ -107,7 +107,8 @@ class ArticlesController extends BaseController
         if(!empty($_FILES['featured_image']) && $_FILES['featured_image']['error'] == 0) {
             $ext = pathinfo($_FILES['featured_image']['name'], PATHINFO_EXTENSION);
             $filename = "img_".microtime()."_".rand(1000, 9999).".".$ext;
-            move_uploaded_file($_FILES['featured_image']['tmp_name'], "assets/image/{$filename}");
+            move_uploaded_file($_FILES['featured_image']['tmp_name'], "assets/images/{$filename}");
+            unlink("assets/images/$article->featured_image)");
 
             $article->featured_image = $filename;
         }

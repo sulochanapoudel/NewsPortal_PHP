@@ -63,7 +63,7 @@
                                 <input type="email" name="email" class="form-control" placeholder="Enter your Email address" required>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" class="form-control" placeholder="Enter your Message"required> </textarea>
+                                <textarea name="message" class="form-control" placeholder="Enter Your message" required> </textarea>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-outline-light"><i class="fas fa-paper-plane mr-2"></i>Send </button>

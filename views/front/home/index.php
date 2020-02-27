@@ -1,29 +1,40 @@
 
-        
-        <?php 
 
-            view('front/includes/header.php');
-            view('front/includes/nav.php');
-        ?>
+<?php
+    view('front/includes/header.php');
+    view('front/includes/nav.php');
+?>
 
         <main class="row">
             <div class="col-12">
                 <div class="row">
                     <div class="col-12 breaking-heading text-center my-3 font-weight-bold">
-                        This is a breaking news headline at top.
+                        <?php echo $breaking->title; ?>
                     </div>
+                    <?php if(!empty($breaking->featured_image)): ?>
                     <div class="col-6">
-                        <img src="<?php echo url("assets/images/img_0.24055900 1582534787_1666.jpg"); ?>" class="img-fluid">
+                        <img src="<?php echo url("assets/images/{$breaking->featured_image}"); ?>" class="img-fluid">
                     </div>
+                    <?php endif; ?>
                     <div class="col">
                         <div class="row">
                             <div class="col-12">
                                 <small class="text-muted font-italic">
-                                    <i class="fas-clock mr-2"></i> 31 jan 2020 04:30 PM
+                                    <i class="fas fa-clock mr-2"></i> <?php echo date('j M Y h:i A',strtotime($breaking->published_at)); ?>
                                 </small>
                             </div>
                             <div class="col-12 text-justify">
-                                कोरोना भाइरसको संक्रमण फैलिँदै गएपछि जापानमा हुने ओलम्पिक प्रतियोगिता रोकिने सम्भावना बढ्दै गएको छ । आउँदो जुलाई २४ बाट जापानको टोकियोमा हुन लागेको ओलम्पिक २०२० रोक्नुपर्ने अन्तराष्ट्रिय ओलम्पिक समितिका सदस्य डिक पाउन्डले बताएका छन् ।
+                                <?php //dump($breaking);
+                                    $content = nl2br($breaking->content);
+                                    $paragraph = substr($content, 0, strpos($content, '<br />'));
+                                    if(!empty($paragraph)){
+                                        echo $paragraph;
+                                    }
+                                    else{
+                                        echo $breaking->content;
+                                    }
+
+                                ?>
                             </div>
                             <div class="col-12">
                                 <a href="#" class="btn btn-outline-primary btn-sm">Read More </a>
@@ -37,18 +48,27 @@
                     </div>
                 </div>
                 <div class="row">
-                <?php for($i = 1; $i <= 8; $i++): ?>
+                <?php foreach($articles as $article): ?>
                     <div class="col-3 mb-3">
                         <div class="row">
                             <div class="col-12">
-                                <img src="<?php echo url("assets/images/img_0.55540700 1582531126_3177.jpg"); ?>" class="img-fluid">
+                            <?php
+                            if(!empty($article->featured_image)) {
+                                $image = $article->featured_image;
+                            }
+                            else {
+                                $image = 'download.png';
+                            }
+                            ?>
+                                <div class="img-list" style="background-image: url('<?php echo url("assets/images/{$image}"); ?>')">
+                                </div>
                             </div>
                             <div class="col-12 text-center font-weight-bold my-2">
-                            <a href="#"> THis is a demo Title of an article</a>
+                            <a href="#"> <?php echo $article->title; ?></a>
                             </div>
                         </div>
                     </div>
-                    <?php endfor; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </main>

@@ -20,13 +20,13 @@ view('cms/includes/nav.php');
 
 
         <div class=""form-group">
-        <lable for="slug">Slug</lable>
+        <label for="slug">Slug</label>
         <input type="text" name="slug" id="slug" class="form-control" value="<?php echo $article->slug; ?>" required>
     </div>
 
 
     <div class=""form-group">
-    <lable for="content">Content</lable>
+    <label for="content">Content</label>
     <textarea name="content" id="content" class="form-control" required> <?php echo $article->content; ?></textarea>
     </div>
 

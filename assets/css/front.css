@@ -11,5 +11,12 @@ body {
 }
 
 .social-link a:hover,  .social-link a:focus {
-	text-decoration: none;
+    text-decoration: none;
+}
+
+.img-list {
+        height: 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
 }
