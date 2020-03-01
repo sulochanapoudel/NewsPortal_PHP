@@ -37,7 +37,7 @@
                                 ?>
                             </div>
                             <div class="col-12">
-                                <a href="#" class="btn btn-outline-primary btn-sm">Read More </a>
+                                <a href="<?php echo url("article/{$breaking->slug}"); ?>" class="btn btn-outline-primary btn-sm">Read More </a>
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@
                                 </div>
                             </div>
                             <div class="col-12 text-center font-weight-bold my-2">
-                            <a href="#"> <?php echo $article->title; ?></a>
+                            <a href="<?php echo url("article/{$article->slug}"); ?>"> <?php echo $article->title; ?></a>
                             </div>
                         </div>
                     </div>
