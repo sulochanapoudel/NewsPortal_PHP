@@ -1,7 +1,7 @@
 <footer class="row">
             <div class="col-12 text-white bg-secondary py-3">
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <div class="row">
                             <div class="col-12">
                                 <a href="#" class="footer-logo font-weight-bold text-white">News Site</a>
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <div class="row">
                             <div class="col-12">
                                 <h4> Find Us On</h4>
@@ -48,7 +48,7 @@
                 </div>
 
             </div>
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="row">
                     <div class="col-12">
                         <h4>Contact Us</h4>

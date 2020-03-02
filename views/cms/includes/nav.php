@@ -20,7 +20,7 @@
                     <a class="nav-link" href="<?php echo url('articles'); ?>"><i class="fas fa-newspaper mr-2"></i>Articles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-comments mr-2"></i>Comments</a>
+                    <a class="nav-link" href="<?php echo url('comments'); ?>"><i class="fas fa-comments mr-2"></i>Comments</a>
                 </li>
             </ul>
             <ul class="navbar-nav">

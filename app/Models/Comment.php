@@ -12,6 +12,6 @@ class Comment extends BaseModel
 
     public function article()
     {
-        return $this->related(Articles::class, 'article_id', 'parent');
+        return $this->related(Article::class, 'article_id', 'parent');
     }
 }
